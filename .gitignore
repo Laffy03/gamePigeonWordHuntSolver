@@ -1,0 +1,61 @@
+# ----------------------------
+# CLion / CMake build artifacts
+# ----------------------------
+
+# Build directories
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+build.ninja
+*.ninja_log
+*.ninja_deps
+
+# CLion-specific generated files
+.idea/
+*.iml
+*.workspace
+*.user
+
+# ----------------------------
+# Generated Qt / C++ files
+# ----------------------------
+
+# Qt MOC, UI, and resource generated files
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# Object files and binaries
+*.o
+*.obj
+*.exe
+*.out
+*.dll
+*.so
+*.dylib
+*.app
+
+# CMake log files
+CMakeFiles/*.log
+CMakeFiles/TargetDirectories.txt
+CMakeFiles/clion-Debug-log.txt
+CMakeFiles/**/*.obj
+CMakeFiles/**/*.dir
+CMakeFiles/**/*.ninja
+CMakeFiles/**/*.ninja_log
+CMakeFiles/**/*.ninja_deps
+
+# CMake API cache/reply
+cmake-build-debug/.cmake/api/v1/reply/
+cmake-build-debug/Testing/Temporary/
+
+# ----------------------------
+# OS / editor temp files
+# ----------------------------
+*.swp
+*.swo
+*.log
+*.DS_Store
+Thumbs.db
