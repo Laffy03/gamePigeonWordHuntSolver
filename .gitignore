@@ -26,8 +26,6 @@ gamePigeonWordHuntSolver.exe
 
 # Qt related files
 .qt/
-*.qrc
-*.ui
 moc_*
 qrc_*
 ui_*

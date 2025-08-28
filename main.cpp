@@ -3,6 +3,9 @@
 #include <fstream>
 #include <chrono>
 #include <QApplication>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
 
 #include "wordHuntTrie.h"
 #include "wordHuntGUI.h"
@@ -11,12 +14,15 @@
 using namespace std;
 
 
-unordered_set<string> buildWordDict(const string& dictionary_filepath);
+unordered_set<string> buildWordDict(const QString& resourcePath);
 
 
 int main(int argc, char *argv[]) {
+    QDir dir(":/");
+    QStringList files = dir.entryList();
+    qDebug() << "Available resources:" << files;
     auto trieStartTime = chrono::high_resolution_clock::now();
-    unordered_set<string> wordDict = buildWordDict(R"(C:\Users\lucfi\Downloads\Collins Scrabble Words (2019).txt)");
+    unordered_set<string> wordDict = buildWordDict(":/CollinsScrabbleWords2019.txt");
     wordHuntTrie trie;
     trie.insertDict(wordDict);
     auto trieEndTime = chrono::high_resolution_clock::now();
@@ -31,14 +37,17 @@ int main(int argc, char *argv[]) {
 }
 
 
-unordered_set<string> buildWordDict(const string& dictionary_filepath) {
-    ifstream file(dictionary_filepath);
-    if (!file.is_open()) {
-        throw ios_base::failure("Error opening file: " + dictionary_filepath);
+unordered_set<string> buildWordDict(const QString& resourcePath) {
+    QFile file(resourcePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        throw ios_base::failure("Error opening resource: " + resourcePath.toStdString());
     }
+
     unordered_set<string> dict;
-    string word;
-    while (getline(file, word, '\n')) {
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine().trimmed();
+        string word = line.toStdString();
         if (word.length() >= 3 && word.length() <= 16) {
             dict.insert(word);
         }
