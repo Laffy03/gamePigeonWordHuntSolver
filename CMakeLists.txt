@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 project(gamePigeonWordHuntSolver)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_PREFIX_PATH "C:/Qt/6.5.1/mingw_64/lib/cmake")
+
 set(CMAKE_AUTOMOC ON)
 find_package(Qt6 REQUIRED COMPONENTS Widgets)
 
