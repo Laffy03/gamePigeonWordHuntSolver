@@ -1,6 +1,3 @@
-//
-// Created by lucfi on 10/27/2024.
-//
 #include <unordered_map>
 #include <unordered_set>
 #include <iostream>

@@ -1,7 +1,3 @@
-//
-// Created by lucfi on 10/27/2024.
-//
-
 #include "wordHuntTrie.h"
 
 TrieNode::TrieNode(char val) {

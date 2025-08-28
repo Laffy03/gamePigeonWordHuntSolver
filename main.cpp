@@ -16,7 +16,7 @@ unordered_set<string> buildWordDict(const string& dictionary_filepath);
 
 int main(int argc, char *argv[]) {
     auto trieStartTime = chrono::high_resolution_clock::now();
-    unordered_set<string> wordDict = buildWordDict(R"(path)");
+    unordered_set<string> wordDict = buildWordDict(R"(C:\Users\lucfi\Downloads\Collins Scrabble Words (2019).txt)");
     wordHuntTrie trie;
     trie.insertDict(wordDict);
     auto trieEndTime = chrono::high_resolution_clock::now();

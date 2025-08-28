@@ -1,6 +1,3 @@
-//
-// Created by lucfi on 8/26/2025.
-//
 #include <QWidget>
 #include <QListWidget>
 #include <QLineEdit>

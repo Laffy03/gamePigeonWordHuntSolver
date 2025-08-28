@@ -1,6 +1,3 @@
-//
-// Created by lucfi on 8/26/2025.
-//
 #include "WordHuntGUI.h"
 
 #include <QVBoxLayout>
@@ -25,6 +22,7 @@ public:
 WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
         : QWidget(parent), trie(t)
 {
+    setStyleSheet("background-color: #74a36f;");
     auto *mainLayout = new QHBoxLayout(this);
     mainLayout->setSpacing(20);
     mainLayout->setContentsMargins(15, 15, 15, 15);
@@ -35,10 +33,17 @@ WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
     leftLayout->setSpacing(10);
     leftLayout->setContentsMargins(0, 0, 0, 0);
 
-    // Board container
+    // Board container with dark green background
     boardContainer = new QWidget();
-    const int boardPixelSize = 550; // total board size
+    boardContainer->setObjectName("boardContainer"); // For CSS targeting
+    const int boardPixelSize = 550;
     boardContainer->setFixedSize(boardPixelSize, boardPixelSize);
+
+    // Set dark green background for the grid
+    boardContainer->setStyleSheet("QWidget#boardContainer {"
+                                  "background-color: #2a6e3f;"
+                                  "border-radius: 15px;"
+                                  "}");
 
     // Grid layout inside board container, add cells
     boardLayout = new QGridLayout(boardContainer);
@@ -62,7 +67,20 @@ WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
             cell->setAlignment(Qt::AlignCenter);
             cell->setFixedSize(cellSize, cellSize);
             cell->setFont(cellFont);
-            cell->setStyleSheet("border: 1px solid black;");
+
+            // Style the cell with wood background and rounded edges
+            cell->setStyleSheet("QLineEdit {"
+                                "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                                "stop: 0 #f6d7b0, stop: 1 #e9c69a);"
+                                "border: 2px solid #000000;"
+                                "border-radius: 10px;"
+                                "color: #000000;"
+                                "font-weight: bold;"
+                                "}"
+                                "QLineEdit:focus {"
+                                "border: 2px solid #ffa500;"
+                                "}");
+
             cell->setValidator(validator);
 
             // autofocus and check if solve button should be enabled
@@ -77,7 +95,7 @@ WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
                     if (nextRow < 4)
                         board[nextRow][nextCol]->setFocus();
                 }
-                updateSolveButtonState(); // enable/disable solve button
+                updateSolveButtonState();
             });
 
             board[i][j] = cell;
@@ -85,17 +103,34 @@ WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
         }
     }
 
-    // Reset button centered under the board
+    // Reset button with matching style
     auto *resetButton = new QPushButton("Reset Board");
     resetButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     resetButton->setMinimumHeight(30);
+    resetButton->setStyleSheet("QPushButton {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #6a994e, stop: 1 #386641);"
+                               "color: white;"
+                               "border: 2px solid #2d5016;"
+                               "border-radius: 10px;"
+                               "padding: 5px;"
+                               "font-weight: bold;"
+                               "}"
+                               "QPushButton:hover {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #8cb369, stop: 1 #6a994e);"
+                               "}"
+                               "QPushButton:pressed {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #386641, stop: 1 #6a994e);"
+                               "}");
 
     leftLayout->addStretch();
     leftLayout->addWidget(boardContainer, 0, Qt::AlignHCenter);
     leftLayout->addWidget(resetButton, 0, Qt::AlignHCenter);
     leftLayout->addStretch();
 
-    mainLayout->addWidget(leftContainer, 3); // left panel takes 3/4 width
+    mainLayout->addWidget(leftContainer, 3);
 
     // ----------------- Right container: word list + solve button -----------------
     auto *rightContainer = new QWidget();
@@ -104,16 +139,49 @@ WordHuntGUI::WordHuntGUI(wordHuntTrie& t, QWidget *parent)
 
     wordListWidget = new QListWidget();
     wordListWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    wordListWidget->setStyleSheet("QListWidget {"
+                                  "background: #f6d7b0;"
+                                  "border: 2px solid #000000;"
+                                  "border-radius: 10px;"
+                                  "color: #3d2b1f;"
+                                  "font-weight: bold;"
+                                  "}"
+                                  "QListWidget::item:selected {"
+                                  "background: #e9c69a;"
+                                  "color: #3d2b1f;"
+                                  "}");
 
     solveButton = new QPushButton("Solve");
     solveButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
     solveButton->setMinimumHeight(40);
     solveButton->setEnabled(false);
+    solveButton->setStyleSheet("QPushButton {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #6a994e, stop: 1 #386641);"
+                               "color: white;"
+                               "border: 2px solid #2d5016;"
+                               "border-radius: 10px;"
+                               "padding: 5px;"
+                               "font-weight: bold;"
+                               "font-size: 16px;"
+                               "}"
+                               "QPushButton:hover {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #8cb369, stop: 1 #6a994e);"
+                               "}"
+                               "QPushButton:pressed {"
+                               "background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,"
+                               "stop: 0 #386641, stop: 1 #6a994e);"
+                               "}"
+                               "QPushButton:disabled {"
+                               "background: #aabdac;"
+                               "border: 2px solid #7a8c7d;"
+                               "}");
 
     rightLayout->addWidget(wordListWidget);
     rightLayout->addWidget(solveButton);
 
-    mainLayout->addWidget(rightContainer, 1); // right panel takes 1/4 width
+    mainLayout->addWidget(rightContainer, 1);
 
     // ----------------- Connect signals -----------------
     connect(solveButton, &QPushButton::clicked, this, &WordHuntGUI::solveBoard);

@@ -1,61 +1,81 @@
-# ----------------------------
-# CLion / CMake build artifacts
-# ----------------------------
-
 # Build directories
 cmake-build-*/
+build/
 CMakeFiles/
+Testing/
+
+# CMake generated files
 CMakeCache.txt
+CMakeLists.txt.user
+*.cmake
 cmake_install.cmake
+install_manifest.txt
+compile_commands.json
 Makefile
-build.ninja
-*.ninja_log
-*.ninja_deps
+.build.ninja
+.ninja_deps
+.ninja_log
 
-# CLion-specific generated files
-.idea/
-*.iml
-*.workspace
-*.user
-
-# ----------------------------
-# Generated Qt / C++ files
-# ----------------------------
-
-# Qt MOC, UI, and resource generated files
-moc_*.cpp
-ui_*.h
-qrc_*.cpp
-
-# Object files and binaries
-*.o
-*.obj
+# Executables and binaries
+gamePigeonWordHuntSolver.exe
 *.exe
-*.out
 *.dll
 *.so
 *.dylib
 *.app
 
-# CMake log files
-CMakeFiles/*.log
-CMakeFiles/TargetDirectories.txt
-CMakeFiles/clion-Debug-log.txt
-CMakeFiles/**/*.obj
-CMakeFiles/**/*.dir
-CMakeFiles/**/*.ninja
-CMakeFiles/**/*.ninja_log
-CMakeFiles/**/*.ninja_deps
+# Qt related files
+.qt/
+*.qrc
+*.ui
+moc_*
+qrc_*
+ui_*
 
-# CMake API cache/reply
-cmake-build-debug/.cmake/api/v1/reply/
-cmake-build-debug/Testing/Temporary/
+# Qt plugins and resources
+iconengines/
+imageformats/
+platforms/
+styles/
+translations/
+tts/
+networkinformations/
+generic/
 
-# ----------------------------
-# OS / editor temp files
-# ----------------------------
+# Generated files
+.ringa_deps
+.ninga_log
+D3D.complex_47
+
+# Development environment files
+.vscode/
+.idea/
 *.swp
 *.swo
-*.log
-*.DS_Store
+*~
+
+# Dependency files
+libgcc_s_seh-1.dll
+libstdc++-6.dll
+libwinpthread-1.dll
+opengl32sw.dll
+Qt6Core.dll
+Qt6Gui.dll
+Qt6Network.dll
+Qt6Svg.dll
+Qt6Widgets.dll
+
+# macOS
+.DS_Store
+
+# Windows
 Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+/deploy_qt.bat
