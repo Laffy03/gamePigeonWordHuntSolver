@@ -16,3 +16,6 @@ macOS Users:
 4. Select "Open" from the menu
 5. Click "Open" in the security dialog
     - *This is needed because I'm not paying $99/year (yikes) to have my app notarized by Apple*
+  
+<img width="874" height="650" alt="Screenshot 2025-08-28 003340" src="https://github.com/user-attachments/assets/0e24a91a-6935-4da2-974a-24283dcdc1ae" />
+
