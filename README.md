@@ -1,6 +1,6 @@
 Installation Instructions:
 
-Start by navigating to the "Releases" tab in GitHub (located right below "about")
+Start by navigating to the "Releases" tab in GitHub (located right below "About")
 
 Windows Users:
 1. Download the `.zip` file for Windows
